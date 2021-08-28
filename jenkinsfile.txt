@@ -1,0 +1,31 @@
+
+pipeline{
+	  agent any
+    environment{
+        PATH="/opt/maven/bin:$PATH"
+    }
+    stages{
+        
+        stage('SCM-Checkout'){
+            steps{
+               git 'https://github.com/gsreekar86/CICD-Project-Simplilearn.git' 
+            }
+            
+            
+        }
+        
+            stage('Compile-Buld'){
+                steps{
+                    sh 'mvn clean install'
+            	}
+            
+            }
+        
+        stage('UnitTest-Junit'){
+            steps{
+                sh 'mvn test'
+            }
+            
+            
+        }
+}
